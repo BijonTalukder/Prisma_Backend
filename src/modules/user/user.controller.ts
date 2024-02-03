@@ -20,7 +20,35 @@ const inserOrUpdateProfile = async(req:Request,res:Response)=>{
 
     }
 }
+
+const getUser =async (req:Request,res:Response) => {
+    try {
+        const result = await UserService.getUser()
+        res.send({success:true,message:'user get successfully',data:result})
+
+        
+    } catch (error) {
+        res.send(error)
+        
+    }
+    
+}
+
+const geSingletUser =async (req:Request,res:Response) => {
+    try {
+        const result = await UserService.getSingleUser(Number(req.params.id));
+        res.send({success:true,message:'Single user get successfully',data:result})
+
+        
+    } catch (error) {
+        res.send(error)
+        
+    }
+    
+}
 export const UserController = {
     insertIntoDb,
-    inserOrUpdateProfile
+    inserOrUpdateProfile,
+    getUser,
+    geSingletUser
 }

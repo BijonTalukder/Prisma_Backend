@@ -15,8 +15,8 @@ model User{
   email String @unique
   name String
   role String
-  profile Profile
-  posts post[]
+  profile Profile?
+  posts Post[]
 }
 model Profile {
   id Int @id @default(autoincrement())
@@ -28,6 +28,7 @@ user User @relation(fields: [userId],references: [id])
 model Category{
   id Int @id @default(autoincrement())
   name String
+  post Post[]
 }
 model Post{
   id Int @id @default(autoincrement())
