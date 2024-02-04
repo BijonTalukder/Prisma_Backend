@@ -17,16 +17,40 @@ const insertIntoDb =async (req:Request,res:Response) => {
     
 }
 const getCategory  =async (req:Request,res:Response) => {
-    const result = await CategoryService.getCategory();
-    res.send({
-        success:true,
-        message:"all category fetched",
-        data:result
-    })
+    try {
+        const result = await CategoryService.getCategory();
+        res.send({
+            success:true,
+            message:"all category fetched",
+            data:result
+        })
+        
+    } catch (error) {
+        
+        res.send(error)
+    }
+  
     
+}
+const getSingleCategory = async (req:Request,res:Response)=>{
+    
+    try {
+        const id = req.params.id
+        const result = await CategoryService.getSingleCategory(Number(id))
+        res.send({
+            success:true,
+            message:"single  category fetched",
+            data:result
+        })
+        
+    } catch (error) {
+        res.send(error)
+    }
+   
 }
 
 export const CategoryController ={
     insertIntoDb,
-    getCategory
+    getCategory,
+    getSingleCategory
 }

@@ -10,7 +10,15 @@ const getCategory =async () => {
     return result
     
 }
+const getSingleCategory = async (id:Number)=>{
+    const result = await prisma.category.findUnique({
+        where:{
+            id
+        }
+    })
+}
 export const CategoryService = {
     insertIntoDb,
-    getCategory
+    getCategory,
+    getSingleCategory
 }
